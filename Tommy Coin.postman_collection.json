@@ -1,0 +1,537 @@
+{
+	"info": {
+		"_postman_id": "f55fb7e2-10ba-4e37-a3ed-a9cae15a8ae6",
+		"name": "Tommy Coin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sender\": \"john\",\n    \"recipient\": \"allan\",\n    \"amount\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Transaction",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sender\": \"{{$randomFullName}}\",\n    \"recipient\": \"{{$randomFullName}}\",\n    \"amount\": {{$randomInt}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}:53544/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"port": "53544",
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-SduYhQUmXU9XFuUY7TScka0Zpqw\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 17:46:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"sender\": \"Block B\",\n    \"recipient\": \"Leonard Zemlak\",\n    \"amount\": 422\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jul 2021 23:43:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						},
+						{
+							"name": "Transactions",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "149"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"95-pFbAqLSL98GnVDSx2SkmWHQUAPE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jul 2021 23:43:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"sender\": \"Miss Marjorie Schaden\",\n        \"recipient\": \"Ms. Edgar Schiller\",\n        \"amount\": 731\n    },\n    {\n        \"sender\": \"Sonya Green\",\n        \"recipient\": \"Tabitha Hamill\",\n        \"amount\": 529\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Chain",
+			"item": [
+				{
+					"name": "Get Chain",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:53544/chain",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "53544",
+							"path": [
+								"chain"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Chain",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/chain",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chain"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "358"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"166-3wd7V9J4TmLXO+CeVCr/30Fo8CE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jul 2021 23:29:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"timestamp\": 1625527667,\n        \"transactions\": [],\n        \"previousHash\": \"0\",\n        \"nonce\": 0,\n        \"hash\": \"00a084431cf27e30caa4c8cc438ae2c48fd1f8d0c65274a7822a4b69ce5f33e5\"\n    },\n    {\n        \"timestamp\": 1625527722,\n        \"transactions\": [],\n        \"hash\": \"00d1ea196ae9a896990e4e9c3aea7edde9a89cf9cc14e0298dea6a5885d124de\",\n        \"nonce\": 230,\n        \"previousHash\": \"00a084431cf27e30caa4c8cc438ae2c48fd1f8d0c65274a7822a4b69ce5f33e5\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Validate Chain",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/chain/validate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"chain",
+								"validate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Validate Chain",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/chain/validate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"chain",
+										"validate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "21"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15-MBMfRAb1yRyHPUfPMAVsAeA6a2g\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 05 Jul 2021 23:42:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"isChainValid\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Resolve Chain",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/chain/resolve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"chain",
+								"resolve"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Node",
+			"item": [
+				{
+					"name": "Register Node",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nodes\": [\"http://192.160.0.1\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/node",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"node"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register Node",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nodes\": [\"http://192.160.0.1\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/node",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"node"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-lUJ5JBmQmD4jQ+knVkxc9xffebY\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 06 Jul 2021 15:22:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"registered\": [\n        \"http://192.160.0.1/\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Registered Nodes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/node",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"node"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mine",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/mine",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"mine"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful Mining",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}:53081/mine",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"port": "53081",
+							"path": [
+								"mine"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "284"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"11c-yY6DFqKOZFPVvDcajO1M2vu7pqE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jul 2021 17:34:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": 1625592868,\n    \"transactions\": [\n        {\n            \"sender\": \"0\",\n            \"recipient\": \"7e4fae006e1f541a17589bb93cb117a8\",\n            \"amount\": 100\n        }\n    ],\n    \"hash\": \"00adb3966a14cdf4d76f5ab65abc9e97128ea12d4fb04a2ee256b349eff36cc2\",\n    \"nonce\": 134,\n    \"previousHash\": \"005099089e2ee8d1f2f49ef967a1b77a9c6f8ea3f02a65ff1dd2dd575d69b710\"\n}"
+				}
+			]
+		}
+	]
+}

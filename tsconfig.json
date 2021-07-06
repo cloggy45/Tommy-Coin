@@ -1,0 +1,13 @@
+{
+"compilerOptions": {
+  "noImplicitAny": true,
+  "moduleResolution": "node",
+  "esModuleInterop": true,
+  "removeComments": true,
+  "preserveConstEnums": true,
+  "sourceMap": true,
+  "outDir": "./build",
+  "baseUrl": "."
+},
+"exclude": ["node_modules", "**/*.spec.ts"]
+}

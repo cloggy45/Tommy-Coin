@@ -1,0 +1,28 @@
+{
+  "name": "tommy-coin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "app": "tsc --project tsconfig.json && node ./build/app.js",
+    "server": "tsc --project tsconfig.json && node ./build/server.js",
+    "watch": "npm run build && tsc *.ts --watch --esModuleInterop true"
+  },
+  "author": "Paul McLoughlin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/crypto-js": "4.0.1",
+    "@types/express": "4.17.12",
+    "typescript": "4.3",
+    "@types/node-fetch": "^2.5.10",
+    "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "crypto-js": "4.0.0",
+    "express": "4.17.1",
+    "node-fetch": "^2.6.1"
+  },
+  "prettier": {
+    "tabWidth": 2
+  }
+}
