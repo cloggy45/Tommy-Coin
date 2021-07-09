@@ -1,52 +1,51 @@
 import express from "express";
 import bodyParser from "body-parser";
-import crypto from "crypto";
+import cors from "cors";
 
 import { TransactionService } from "./src/service/transactionService";
 import { DefaultChain } from "./src/chain/defaultChain";
 import { MiningService } from "./src/service/miningService";
 import { BlockFactory } from "./src/block/blockFactory";
 import { NodeService } from "./src/service/nodeService";
+import { WalletService } from "./src/service/walletService";
 
-const app = express();
+const app = express()
+  .use(cors())
+  .use(bodyParser.urlencoded({ extended: false }))
+  .use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-const nodeId = crypto.randomBytes(16).toString("hex");
-
-const transactionService = new TransactionService();
+const walletService = new WalletService(new Map<string, number>());
+const transactionService = new TransactionService(walletService);
 const blockFactory = new BlockFactory(transactionService);
 const nodeService = new NodeService();
 const tommyCoin = new DefaultChain(nodeService);
 
-require("./src/route/transactions")(app, transactionService);
+require("./src/route/wallet")(app, walletService);
+require("./src/route/transaction")(app, transactionService);
 require("./src/route/chain")(app, tommyCoin);
 require("./src/route/mine")(
   app,
   tommyCoin,
   transactionService,
   blockFactory,
-  nodeId
+  walletService
 );
 require("./src/route/node")(app, nodeService);
 
-function generateGenesisBlock() {
+(function generateGenesisBlock() {
   console.log("Creating genesis block.....");
-  const proof = new MiningService(Date.now(), []).mine();
 
+  const proof = new MiningService(Date.now(), []).mine();
   const genesisBlock = blockFactory.createGenesisBlock(proof);
 
   console.log("Genesis block created!");
   tommyCoin.add(genesisBlock);
-}
-
-generateGenesisBlock();
+})();
 
 const server = app.listen(0, () => {
   let address = server.address();
   console.log(image);
-  console.log(`Doin a bit of minin are ye??? Tommy node started`);
+  console.log(`Tommy node started`);
   console.log(address);
 });
 

@@ -3,14 +3,16 @@ import express = require("express");
 import { BlockFactory } from "../block/blockFactory";
 import { Chain } from "../chain/defaultChain";
 import { MiningService } from "../service/miningService";
-import { TransactionService } from "src/service/transactionService";
+import { TransactionService } from "../service/transactionService";
+import { WalletService } from "../service/walletService";
+import { minersKeys, sign } from "../../minersWallet";
 
 module.exports = function (
   app: express.Application,
   tommyCoin: Chain,
   transactionService: TransactionService,
   blockFactory: BlockFactory,
-  nodeId: string
+  walletService: WalletService
 ) {
   app.get("/mine", (_, res) => {
     const previousBlock = tommyCoin.getLatestBlock();
@@ -23,9 +25,23 @@ module.exports = function (
     const proof = minerService.mine(2);
     const nonce = minerService.getNonce();
 
-    transactionService.add({ sender: "0", recipient: nodeId, amount: 100 });
+    //Reward the miner since they have completed the proof of work
+    transactionService.add({
+      sender: "0",
+      recipient: minersKeys.publicKey,
+      amount: 5,
+      fee: 0,
+      signature: sign("", minersKeys.privateKey), // TODO Hash the transaction and pass it as a message to sign()
+    });
 
-    const block = blockFactory.createBlock(nonce, proof, previousBlock.hash);
+    const block = blockFactory.createBlock(
+      nonce,
+      proof,
+      previousBlock.hash,
+      walletService.balances,
+      previousBlock.blockHeight + 1,
+      minersKeys.publicKey
+    );
 
     tommyCoin.add(block);
 

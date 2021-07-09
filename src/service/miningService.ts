@@ -17,7 +17,12 @@ export class MiningService {
   }
 
   computeHash(): string {
-    return sha256(this.precedingHash + this.timestamp + JSON.stringify(this.transactions) + this.nonce).toString();
+    return sha256(
+      this.precedingHash +
+        this.timestamp +
+        JSON.stringify(this.transactions) +
+        this.nonce
+    ).toString();
   }
 
   getNonce() {
@@ -25,14 +30,14 @@ export class MiningService {
   }
 
   mine(difficulty: number = 1): string {
-    console.log("Looking for the target hash.....");
+    console.log("Doin a bit of minin...");
 
     const target = Array(difficulty + 1).join("0");
 
     while (this.hash.substring(0, difficulty) !== target) {
       this.nonce++;
       this.hash = this.computeHash();
-      console.log("Checking hash " + this.hash + " meets target " + target);
+      console.log("Checking hash " + this.hash + " starts with " + target);
     }
 
     return this.hash;

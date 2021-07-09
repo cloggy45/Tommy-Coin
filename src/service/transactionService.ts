@@ -1,18 +1,27 @@
+import { WalletService } from "./walletService";
+
 export interface Transaction {
   sender: string;
   recipient: string;
   amount: number;
+  signature: string;
+  fee: number;
 }
 
 export class TransactionService {
   pendingTransactions: Transaction[];
+  walletService: WalletService;
 
-  constructor() {
+  constructor(walletService: WalletService) {
     this.pendingTransactions = [];
+    this.walletService = walletService;
   }
 
   add(transaction: Transaction) {
-    this.pendingTransactions.push(transaction);
+    if (this.walletService.isValidTransaction(transaction)) {
+      this.walletService.updateSenderBalance(transaction);
+      this.pendingTransactions.push(transaction);
+    }
   }
 
   getTransactions() {

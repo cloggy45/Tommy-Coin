@@ -82,6 +82,9 @@ export class DefaultChain implements Chain {
             return;
           }
           return;
+        })
+        .catch((reason) => {
+          console.log(`Error encountered: ${reason}`);
         });
     });
   }

@@ -6,6 +6,9 @@ export interface Block {
   timestamp: number;
   transactions: Transaction[];
   nonce: number;
+  balances: Map<string, number>;
+  blockHeight: number;
+  coinbaseBeneficiary: string;
 }
 
 export class BlockFactory {
@@ -32,6 +35,9 @@ export class BlockFactory {
       previousHash: "0",
       nonce: 0,
       hash,
+      balances: new Map<string, number>(),
+      blockHeight: 1,
+      coinbaseBeneficiary: "",
     };
   }
 
@@ -40,8 +46,18 @@ export class BlockFactory {
    * @param nonce value used to generate the hash which contains the target value.
    * @param hash that contains the target value.
    * @param previousHash from the previous block.
+   * @param balances keeps track of the balances of each registered wallet
+   * @param blockHeight total size of the block chain
+   * @param coinbaseBeneficiary
    */
-  createBlock(nonce: number, hash: string, previousHash: string): Block {
+  createBlock(
+    nonce: number,
+    hash: string,
+    previousHash: string,
+    balances: Map<string, number>,
+    blockHeight: number,
+    coinbaseBeneficiary: string
+  ): Block {
     const transactions = this.transactionService.getTransactions();
 
     this.transactionService.clearTransactions();
@@ -54,6 +70,9 @@ export class BlockFactory {
       hash,
       nonce,
       previousHash,
+      balances: balances,
+      blockHeight,
+      coinbaseBeneficiary,
     };
   }
 }
